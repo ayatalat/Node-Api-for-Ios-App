@@ -32,7 +32,7 @@ router.post('/register', function (req, res, next) {
 		token: {
 			key: "key.pem",
 			teamId: "com.pushbots.logapp",
-			keyId:"key.pem"
+			keyId:"" // is missing 
 		},
 		cert: "cert.pem",
 		
@@ -45,9 +45,7 @@ router.post('/register', function (req, res, next) {
 	notification.badge = 1;
 	notification.payload = { 'message': 'hi there' };
 	provider.send(notification, deviceToken).then((response) => {
-		// response.sent: Array of device tokens to which the notification was sent succesfully
-		// response.failed: Array of objects containing the device token (`device`) and either an `error`, or a `status` and `response` from the API
-		if (response.sent) {
+			if (response.sent) {
 			console.log("sended success", response.sent);
 			res.json({ success: true });
 
